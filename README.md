@@ -46,6 +46,79 @@ Este proyecto cumple con los requisitos del curso mediante el uso intencional y 
 
 ---
 
+Perfecto, eso es justo lo que se necesita para el documento técnico: **describir lo que has hecho, justificando con código real dónde se aplica la estructura**. Aquí tienes un bloque mejorado para tu sección `## Aplicación del código`:
+
+---
+ 
+## 📌 Aplicación del Código
+
+### 🧱 Gestión de Entidad Principal – Arreglo unidimensional
+
+Se utilizó un **arreglo unidimensional** para registrar los archivos abiertos en pestañas, evitando duplicados y controlando el límite de archivos.
+
+**Archivo:** `PanelEditor.java`  
+**Fragmento:**
+```java
+private static final int MAX_PESTAÑAS = 50;
+private String[] pestañasAbiertas = new String[MAX_PESTAÑAS];
+private int totalPestañas = 0;
+````
+
+Se registra una pestaña con:
+
+```java
+private void registrarPestaña(String nombreArchivo) {
+    for (int i = 0; i < totalPestañas; i++) {
+        if (pestañasAbiertas[i].equals(nombreArchivo)) {
+            return; // Ya está registrada
+        }
+    }
+    pestañasAbiertas[totalPestañas++] = nombreArchivo;
+}
+```
+ 
+### 🌳 TAD Personalizado – Árbol de carpetas con `NodoArchivo`
+
+Se diseñó un **TAD personalizado** llamado `NodoArchivo` para representar cada archivo o carpeta en el árbol visual (`JTree`), encapsulando nombre y ruta completa.
+
+**Archivo:** `NodoArchivo.java`
+**Fragmento:**
+
+```java
+public class NodoArchivo {
+    private String nombre;
+    private String rutaCompleta;
+
+    public NodoArchivo(String nombre, String rutaCompleta) { ... }
+
+    public String getRutaCompleta() { ... }
+
+    @Override
+    public String toString() {
+        return nombre; // Muestra solo el nombre en el JTree
+    }
+}
+```
+
+Este TAD se integra al árbol en `PanelEditor.java`:
+
+```java
+DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(
+    new NodoArchivo(f.getName(), f.getAbsolutePath())
+);
+```
+
+Y se recupera así al hacer clic en el árbol:
+
+```java
+NodoArchivo datos = (NodoArchivo) nodo.getUserObject();
+File archivo = new File(datos.getRutaCompleta());
+```
+
+✔️ Gracias a este diseño, el árbol mantiene la jerarquía de carpetas y archivos, mostrando solo los nombres pero funcionando con rutas absolutas. Esta estructura fue creada desde cero y no forma parte de ninguna librería estándar.
+ 
+
+---
 ## 🧱 Tecnologías Usadas
 
 - **Java 17+**
@@ -58,12 +131,10 @@ Este proyecto cumple con los requisitos del curso mediante el uso intencional y 
 
 ## 🗂 Estructura Inicial del Proyecto
 
-/src
-/vistas
-PanelEditor.java
-NodoArchivo.java
-/estructura
-ArchivoManager.java
+/Source Package
+/ikode
+ PanelEditor.java
+ NodoArchivo.java
  
 ---
 
