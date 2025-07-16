@@ -45,8 +45,8 @@ Este proyecto cumple con los requisitos del curso mediante el uso intencional y 
 |----------------------------------|--------------------------|--------------|---------------------------------------------------------------|
 | Gestión de entidad principal     | Arreglo unidimensional   | ✅ Completado | Registro de pestañas abiertas (nombres de archivos).         |
 | Interacción cronológica          | Lista enlazada           | ✅ Completado | Historial de archivos abiertos recientemente (máximo 10).    |
-| Acciones reversibles             | Pila dinámica            | ⏳ Pendiente  | Para deshacer operaciones (ej: cerrar pestaña, ejecutar).    |
-| Atención o cola de procesamiento| Cola con prioridad       | ⏳ Pendiente  | Para tareas agendadas o procesos automáticos.                |
+| Acciones reversibles             | Pila dinámica            | ✅ Completado  | Para deshacer operaciones (ej: cerrar pestaña, ejecutar).    |
+| Atención o cola de procesamiento| Cola con prioridad       | ✅ Completado  | Para tareas agendadas o procesos automáticos.                |
 | Organización jerárquica          | Árbol binario de búsqueda| ⏳ Pendiente  | Indexación o búsqueda interna de funciones/snippets.         |
 | Eficiencia en búsqueda           | Árbol AVL                | ⏳ Pendiente  | Búsqueda eficiente por nombre de archivo o estructura.       |
 | TAD personalizado                | Árbol de carpetas        | ✅ Completado | NodoArchivo muestra nombre pero guarda ruta completa.        |
@@ -135,10 +135,7 @@ for (NodoHistorial item : historial.obtenerTodos()) {
     menuAbrirReciente.add(opcion);
 }
 ```
- 
-### ✅ Resumen técnico para tu documento:
 
-````markdown
 ### 🔁 Acciones Reversibles – Pila Dinámica
 
 **Archivo:** `HistorialAcciones.java`  
