@@ -135,7 +135,46 @@ for (NodoHistorial item : historial.obtenerTodos()) {
     menuAbrirReciente.add(opcion);
 }
 ```
+ 
+### ✅ Resumen técnico para tu documento:
 
+````markdown
+### 🔁 Acciones Reversibles – Pila Dinámica
+
+**Archivo:** `HistorialAcciones.java`  
+**Estructura aplicada:** `Stack<NodoAccion>`  
+**Descripción:**
+
+Para registrar y revertir acciones del sistema, se implementó una pila dinámica de acciones (`pilaDeshacer`), complementada con otra pila (`pilaRehacer`) para soportar el rehacer de acciones. Esta estructura permite implementar el comportamiento típico de "Deshacer / Rehacer" de editores modernos.
+
+- Cada acción realizada (como abrir o cerrar una pestaña) se encapsula en un objeto `NodoAccion` y se apila usando `pilaDeshacer.push(...)`.
+- El método `deshacer()` realiza un `pop()` de la pila principal, ejecuta la acción inversa, y la guarda en la pila secundaria para rehacer.
+- El método `rehacer()` extrae de `pilaRehacer` y vuelve a aplicarla.
+- Todas las acciones se visualizan en una lista para navegación cronológica, usando el método `getHistorial()`.
+
+**Fragmentos de código:**
+```java
+public void registrar(NodoAccion accion) {
+    pilaDeshacer.push(accion); // push
+    historial.add(accion);
+    pilaRehacer.clear();
+}
+
+public NodoAccion deshacer() {
+    NodoAccion acc = pilaDeshacer.pop();  // pop
+    pilaRehacer.push(acc);                // push
+    return acc;
+}
+````
+
+**Ejecución:**
+
+* Se integra con el menú `menuEditarAtras` y `menuEditarAdelante`.
+* Las acciones también se listan en `listHistorial`, permitiendo retroceder hasta un punto específico del historial mediante `retrocederHasta(...)`.
+
+✔️ Esta implementación cumple completamente el requisito de utilizar una **pila dinámica** para acciones reversibles en el sistema.
+
+ 
 ---
 
 ## 🧱 Tecnologías Usadas
