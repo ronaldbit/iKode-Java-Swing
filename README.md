@@ -3,7 +3,7 @@
 
 **Curso:** Algoritmos y Estructuras de Datos  
 **Proyecto Final**  
-**Autor:** [Ramos Malca, Ronald Antonio]  
+**Autor:** [Ronald Ramos]  
 **Fecha:** [16.07.2025]
 
 ---
